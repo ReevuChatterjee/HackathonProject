@@ -1,0 +1,521 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    height: 100vh;
+    background: linear-gradient(135deg, #E3F2FD, #BBDEFB, #90CAF9);
+    font-family: "Open Sans", sans-serif;
+    color: #424242;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-size: 16px;
+}
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 4em;
+    margin-block: 1.5em;
+}
+nav h1{
+    font-size: 4em;
+    text-align: center;
+    flex: 1;
+    font-family: "Poppins", sans-serif;
+    color: #212121;
+    font-weight: 500;
+}
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align content to the right */
+}
+.profile p{
+    color:#1565C0;
+    padding-bottom: 0.25em;
+}
+.profile button{
+    all:unset;
+    padding: 0.5em 1em;
+    background-color: #1565C0;
+    border-radius: 5px;
+    color: white;
+}
+button>i{
+    margin-left: 0.5em;
+}
+#utility{
+    padding-inline: 6em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3em;
+}
+#utility p{
+    text-align: justify;
+    font-size: 1.1em;
+}
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 2em;
+    flex-wrap: wrap; /* Allows responsiveness */
+}
+.line{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+hr{
+    border: 1px solid #1565C0;
+    width: 80%;
+}
+#features {
+    margin-top: 3em;
+    padding-inline: 6em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 4em;
+    min-height: 100vh; /* instead of height: 100vh */
+}
+#features h2 {
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+
+#features>div{
+    background-color: #E3F2FD;
+    border-radius: 10px;
+    height: 80%;
+    border: 2px solid transparent;
+    box-shadow: 2px 2px 0.5em #555555;
+}
+#feature1, #feature2, #feature3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2em;
+    height: 100%;
+}
+#features > div > i {
+    font-size: 20em;           /* Big and bold, adjust to 10em if you want even bigger */
+    color: #4b0aa7;           /* Vibrant purple, or use your preferred color */
+    text-align: center;
+    display: block;
+    margin: 0 auto 0.2em auto; /* Center and add a little space below */
+}
+#features>div>h2{
+    font-family: "Poppins", sans-serif;
+    color: #212121;
+    font-weight: 500;
+    text-align: center;
+    font-size: 2em;
+}
+#features > div > input[type="file"] {
+    margin-bottom: 1.5em; /* reduce from 10em to 1.5em for better spacing */
+}
+#features>div>p{
+    padding-inline: 2em;
+    text-align: justify;
+    font-family: "Open Sans", sans-serif;
+    color: #424242;
+}
+#features>div>p>a{
+    text-decoration: none;
+    color: #1565C0;
+}
+.feature-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.feature-card button {
+    margin-top: auto;      /* Pushes button to bottom if content grows */
+}
+
+#features > div > button,
+#features > div > input[type="file"] {
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 10em;
+}
+.feature-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    padding: 2em;
+    background-color: #E3F2FD;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    box-shadow: 2px 2px 0.5em #555555;
+    position: relative;
+    text-align: center;
+}
+/* --- Upload Section Styles --- */
+.upload-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2em;
+    margin-top: 1.5em;
+}
+
+.upload-label {
+    display: flex;
+    align-items: center;
+    background: #bbdefb;
+    color: #1565C0;
+    padding: 0.7em 1.5em;
+    border-radius: 6px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 1px 2px 8px #90caf9bb;
+    transition: background 0.2s;
+    margin-bottom: 0.5em;
+}
+.upload-label:hover {
+    background: #90caf9;
+}
+.upload-label i {
+    margin-right: 0.7em;
+    font-size: 1.3em;
+}
+.upload-label input[type="file"] {
+    display: none;
+}
+
+.diagnosis-input {
+    width: 80%;
+    max-width: 340px;
+    padding: 0.6em 1em;
+    border: 1px solid #1565C0;
+    border-radius: 6px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1em;
+    color: #888;
+    background-color: #e3e3e3;
+    transition: border 0.2s;
+    cursor: not-allowed;
+}
+.diagnosis-input:focus {
+    border: 2px solid #0d47a1;
+    outline: none;
+}
+.uploaded-documents-section {
+    width: 95%; /* or 50-70% depending on layout */
+    margin: 14rem auto 2rem auto;  /* top auto bottom auto */
+    padding: 0.6em 1em 0.3em 1em;
+    background: #e3f2fd;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px #bbdefb33;
+    border: 2px solid #1565C0;
+    min-height: 150px;
+    max-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.uploaded-documents-section h3 {
+    color: #1565C0;
+    text-align: center;
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+}
+
+.uploaded-documents-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.uploaded-documents-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    padding: 0.3em 0;
+    border-bottom: 1px solid #bbdefb;
+    font-size: 0.97em;
+}
+
+.uploaded-documents-list li:last-child {
+    border-bottom: none;
+}
+
+.uploaded-documents-list a {
+    color: #1565C0;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    font-size: 0.97em;
+}
+
+.uploaded-documents-list a i {
+    font-size: 1.1em;
+    color: #4b0aa7;
+}
+
+.diagnosis-label {
+    background: #c5e1fa;
+    color: #1565C0;
+    border-radius: 5px;
+    padding: 0.12em 0.5em;
+    margin-left: 0.4em;
+    font-size: 0.92em;
+}
+
+.logo-container img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #90CAF9;
+}
+
+#utility {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* Aligns heading and buttons horizontally center */
+    text-align: center;    /* Aligns text inside p tags too */
+}
+
+#utility h1 {
+    font-size: 3em;
+    margin-bottom: 1em;
+}
+
+#utility button {
+    margin-top: 1em;
+}
+
+.profile-picture-upload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+.profile-picture-upload .upload-label {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #e3f2fd;
+    border: 1px solid #90CAF9;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.profile-picture-upload input[type="file"] {
+    display: none;
+}
+
+.profile-picture-upload .upload-btn {
+    padding: 6px 14px;
+    background-color: #90CAF9;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profile-picture-upload .upload-btn:hover {
+    background-color: #64b5f6;
+}
+.upload-date {
+    margin-left: auto;
+    color: #888;
+    font-size: 0.88em;
+    font-style: italic;
+    white-space: nowrap;
+}
+
+
+.upload-btn {
+    display: block;
+    margin: 0 auto;
+    padding: 0.75em 2em;
+    background-color: #1565C0;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.1em;
+    font-weight: 500;
+    box-shadow: 1px 2px 8px #90caf9bb;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+
+.upload-btn:hover,
+.upload-btn:focus {
+    background: linear-gradient(90deg, #4b0aa7 60%, #1565C0 100%);
+    color: #fff;
+    box-shadow: 0 6px 24px #1565c0cc, 0 2px 8px #4b0aa788;
+    transform: translateY(-3px) scale(1.045);
+}
+
+.upload-btn {
+    background: linear-gradient(90deg, #1565C0 60%, #4b0aa7 100%);
+    color: #fff;
+    padding: 0.85em 2.2em;
+    width: 13em;
+    margin: 0.5em auto 0.8em auto;
+}
+.feature-btn, .upload-btn {
+    margin: 0;
+    align-self: center;
+}
+button i,
+.feature-btn i,
+.upload-btn i,
+.logout-btn i {
+    font-size: 1.2em;
+    vertical-align: middle;
+    margin-left: 0.5em;
+    transition: color 0.2s;
+}
+button:focus-visible,
+.feature-btn:focus-visible,
+.upload-btn:focus-visible,
+.logout-btn:focus-visible {
+    outline: 2px solid #90caf9;
+    outline-offset: 2px;
+}
+/* Feature card headings */
+#features h2,
+.feature-content h2 {
+    font-size: 2em;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    color: #212121;
+    margin-bottom: 0.3em;
+}
+
+/* Feature card body text */
+#features p,
+.feature-content p {
+    font-size: 1.08em;
+    font-family: "Open Sans", sans-serif;
+    color: #424242;
+    margin-bottom: 0.8em;
+}
+.logo-container img {
+    width: 60px;   /* or whatever size you want, e.g., 80px or 100px */
+    height: auto;
+    display: block;
+}
+
+/* --- Logout Button --- */
+.logout-btn {
+    background: linear-gradient(90deg, #1565C0 60%, #4b0aa7 100%);
+    color: #fff;
+    padding: 0.55em 1.7em;
+    margin-top: 0.2em;
+    width: auto;
+    min-width: 7em;
+    align-self: flex-end;
+}
+.logout-btn:hover,
+.logout-btn:focus {
+    background: linear-gradient(90deg, #4b0aa7 60%, #1565C0 100%);
+    color: #fff;
+    box-shadow: 0 6px 20px #1565c0cc, 0 2px 8px #4b0aa788;
+    transform: translateY(-2px) scale(1.045);
+}
+
+/* --- Feature Buttons (Get Started) --- */
+.feature-btn {
+    background: linear-gradient(90deg, #4b0aa7 60%, #1565C0 100%);
+    color: #fff;
+    padding: 0.95em 2.2em;
+    width: 13em;
+    margin: 0 auto 0 auto;
+}
+.feature-btn:hover,
+.feature-btn:focus {
+    background: linear-gradient(90deg, #1565C0 60%, #4b0aa7 100%);
+    color: #fff;
+    box-shadow: 0 6px 24px #4b0aa7cc, 0 2px 8px #1565c088;
+    transform: translateY(-3px) scale(1.045);
+}
+button,
+.feature-btn,
+.upload-btn,
+.logout-btn {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 1.13em;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6em;
+    box-shadow: 0 4px 16px #90caf9cc, 0 1.5px 4px #bbdefb88;
+    transition:
+        background 0.2s,
+        box-shadow 0.2s,
+        transform 0.12s,
+        color 0.2s;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.02em;
+}
+/* Make only the feature icons big and colored */
+#features .feature-card > .feature-content > i,
+#features > div > i {
+    font-size: 8em;      /* You can use 8em, 10em, or even 12em for extra large */
+    color: #4b0aa7;      /* Your vibrant purple */
+    text-align: center;
+    display: block;
+    margin: 0 auto 0.2em auto; /* Center horizontally and add space below */
+    line-height: 1;
+}
+.feature-card form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+input[type="file"],
+input[type="text"] {
+    width: 80%;
+    padding: 0.5em;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.upload-btn {
+    width: 80%;
+    padding: 0.75em;
+    font-size: 1rem;
+    border-radius: 25px;
+}

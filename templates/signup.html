@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'signup.css'%}" />
+    <title>Sign Up</title>
+    <!--FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet"
+    />
+</head>
+<body>
+    <div class="container">
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">
+                    {{ message }}
+                    <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+        <form action="/register/" method="POST">
+            {% csrf_token %}
+            <h1>Sign up</h1>
+
+            <label for="firstname" class="sr-only">First Name</label>
+            <input
+                type="text"
+                placeholder="John"
+                id="firstname"
+                name="firstname"
+                autocomplete="given-name"
+                required
+            />
+
+            <label for="lastname" class="sr-only">Last Name</label>
+            <input
+                type="text"
+                placeholder="Doe"
+                id="lastname"
+                name="lastname"
+                autocomplete="family-name"
+                required
+            />
+
+            <label for="email" class="sr-only">Email Address</label>
+            <input
+                type="email"
+                placeholder="johndoe@gmail.com"
+                id="email"
+                name="email"
+                autocomplete="email"
+                required
+            />
+
+            <label for="password" class="sr-only">Password</label>
+            <input
+                type="password"
+                placeholder="Enter password"
+                id="password"
+                name="password"
+                autocomplete="new-password"
+                required
+            />
+
+            <label for="confirmpassword" class="sr-only">Confirm Password</label>
+            <input
+                type="password"
+                placeholder="Confirm password"
+                id="confirmpassword"
+                name="confirmpassword"
+                autocomplete="new-password"
+                required
+            />
+
+            <button type="submit">Sign Up</button>
+            <p>
+                Already a member? <a href="/" id="signup">Login!</a>
+            </p>
+        </form>
+    </div>
+</body>
+</html>

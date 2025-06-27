@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign In</title>
+    <link rel="stylesheet" href="{% static 'login.css' %}" />
+    <!--FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}" role="alert">
+                    {{ message }}
+                    <button type="button" class="close-btn" aria-label="Close">&times;</button>
+                </li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+
+
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <h1>Sign in</h1>
+            <p>Sign in with your username and password.</p>
+            <input type="email" name="email" id="email" placeholder="Enter Email" required />
+            <input type="password" name="password" id="password" placeholder="Enter password" required />
+            <a href="#" id="forgotpassword">Forgot password?</a>
+            <button type="submit">Login</button>
+            <p>Not a member? <a href="{% url 'register' %}" id="signup">Register here!</a></p>
+        </form>
+        <script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.close-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            this.parentElement.style.display = 'none';
+        });
+    });
+});
+</script>
+
+    </div>
+</body>
+</html>

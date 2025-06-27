@@ -1,0 +1,207 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hospital Finder with Costs</title>
+  <meta charset="utf-8"/>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #5c9ded 0%, #b6d0f7 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .finder-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 40px rgba(44, 101, 144, 0.18);
+      width: 600px;
+      max-width: 98vw;
+      padding: 48px 44px 38px 44px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 40px 0;
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 2.2em;
+      font-weight: 700;
+      color: #3578bc;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: #4b6e8b;
+      font-size: 1.07em;
+      margin-bottom: 26px;
+    }
+    #search-box, #treatment {
+      width: 100%;
+      padding: 13px;
+      margin: 10px 0 0 0;
+      font-size: 1.08em;
+      border: 1.5px solid #b8c6d1;
+      border-radius: 6px;
+      background: #f8fbff;
+      box-sizing: border-box;
+      transition: border 0.2s;
+    }
+    #search-box:focus, #treatment:focus {
+      border: 2px solid #3578bc;
+      outline: none;
+    }
+    #search-btn {
+      width: 100%;
+      margin: 18px 0 0 0;
+      padding: 13px 0;
+      background: #3578bc;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.18em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(53,120,188,0.08);
+    }
+    #search-btn:hover {
+      background: #255e92;
+    }
+    #map {
+      width: 100%;
+      height: 240px;
+      margin: 22px 0 0 0;
+      border-radius: 10px;
+      box-shadow: 0 1px 8px rgba(99,147,193,0.09);
+      border: 1px solid #e0e9f2;
+    }
+    #results, .custom-table {
+      margin-top: 22px;
+      width: 100%;
+      text-align: left;
+    }
+    h3 {
+      font-size: 1.2em;
+      color: #255e92;
+      margin: 12px 0 8px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      background: #f8fbff;
+      border-radius: 7px;
+      overflow: hidden;
+      box-shadow: 0 1px 8px rgba(99,147,193,0.07);
+      font-size: 1em;
+    }
+    th, td {
+      border: none;
+      padding: 9px 7px;
+      font-size: 1em;
+    }
+    th {
+      background-color: #e7f1fa;
+      color: #3578bc;
+      font-weight: 600;
+    }
+    tr:nth-child(even) td {
+      background: #f2f8fd;
+    }
+    tr:nth-child(odd) td {
+      background: #f8fbff;
+    }
+    .hidden { display: none; }
+    .best-hospital {
+      background-color: #d6f5d6 !important;
+      font-weight: bold;
+    }
+    .best-label {
+      color: #1d7a2e;
+      font-weight: bold;
+      margin-left: 8px;
+    }
+    #show-more-btn {
+      width: 100%;
+      padding: 10px 0;
+      margin-top: 8px;
+      background: #6393c1;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #show-more-btn:hover {
+      background: #3578bc;
+    }
+    @media (max-width: 700px) {
+      .finder-card { padding: 18px 2vw; width: 99vw; }
+      #map { height: 140px; }
+      table, th, td { font-size: 0.95em; }
+    }
+  </style>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body>
+  <div class="finder-card">
+    <div style="width:100%;margin-bottom:18px;">
+    <button type="button"
+        onclick="window.history.back(); setTimeout(function(){ location.reload(); }, 100);"
+        style="background:#fff;color:#3578bc;border:1.5px solid #3578bc;padding:7px 18px;border-radius:6px;font-weight:600;cursor:pointer;transition:background 0.2s;">
+  &larr; Back
+</button>
+  </div>
+    <h2>Hospital Finder</h2>
+    <div class="subtitle">Find hospitals by location and treatment</div>
+    <input id="search-box" type="text" placeholder="Enter a city or state" />
+    <select id="treatment">
+      <option value="">Select Treatment</option>
+      <option value="eye surgery">Eye Surgery</option>
+      <option value="cardiology">Cardiology</option>
+      <option value="knee surgery">Knee Surgery</option>
+      <option value="orthopedic">Orthopedic</option>
+      <option value="maternity">Maternity</option>
+      <option value="dental">Dental</option>
+      <option value="ent">ENT</option>
+      <option value="neurology">Neurology</option>
+      <option value="others">Others (Basic Daily Life Treatment)</option>
+    </select>
+    <button id="search-btn">Go</button>
+
+    <div id="map"></div>
+
+    <div id="results">
+      <h3>Hospitals Nearby:</h3>
+      <table id="hospital-table">
+        <thead><tr><th>Name</th><th>Address</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <button id="show-more-btn" class="hidden">Show More Hospitals</button>
+    </div>
+
+    <div id="custom-table" class="custom-table hidden">
+      <h3 id="custom-heading"></h3>
+      <table>
+        <thead>
+          <tr>
+            <th>S.No</th><th>State</th><th>City</th><th>Hospital Name</th><th>Avg. Cost (₹)</th>
+          </tr>
+        </thead>
+        <tbody id="custom-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="{% static 'js/hospital_map.js'%}"></script>
+</body>
+</html>
