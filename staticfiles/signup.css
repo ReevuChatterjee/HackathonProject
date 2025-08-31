@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #E3F2FD, #BBDEFB, #90CAF9);
+}
+.container {
+    width: 30%;
+    border-radius: 20px;
+    border: 1px solid #123e61;
+    box-shadow: 0 0 1em #123e61;
+}
+
+/* Change here: Align form content to the left */
+form {
+    padding: 2em 3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;  /* Align all children to left */
+    text-align: left;         /* Text inside form aligns left */
+}
+
+form h1 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 3em;
+    color: #212121;
+    align-self: center; /* Make sure heading is also left aligned */
+}
+
+form p {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    margin-block: 0.75em;
+    color: #424242;
+    align-self: flex-start; /* Align paragraph left */
+}
+
+form input {
+    border-radius: 5%;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 5px;
+    margin-block: 0.75em;
+    width: 90%;
+    text-align: left;  /* Text inside inputs aligned left */
+}
+
+form a {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    color: #1565C0;
+    font-size: 1em;
+    text-decoration: none;
+}
+
+form button {
+    border: none;
+    outline: none;
+    background-color: #1565C0;
+    font-family: "Open Sans", sans-serif;
+    border-radius: 5px;
+    color: white;
+    margin-top: 0.5em;
+    width: 90%;
+    text-align: center;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+form button:hover {
+    background-color: #0d3d80;
+    cursor: pointer;
+}
+.messages {
+    list-style: none;
+    padding: 0;
+    margin: 24px auto 20px auto;
+    width: 100%;
+    animation: fadeIn 0.6s ease-in-out;
+    box-sizing: border-box; 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.messages li {
+    position: relative;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    border-left: 4px solid;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: "Open Sans", sans-serif;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Close (×) button */
+.messages li .close-btn {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    color: inherit;
+    background: none;
+    border: none;
+}
+
+/* Success message */
+.messages li.success {
+    color: #1b5e20;
+    background-color: #e8f5e9;
+    border-color: #66bb6a;
+}
+
+/* Error message */
+.messages li.error {
+    color: #b71c1c;
+    background-color: #ffebee;
+    border-color: #ef5350;
+}
